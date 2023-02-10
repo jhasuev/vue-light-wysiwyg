@@ -1,27 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="container">
+    Таким образом консультация с широким активом представляет собой интересный эксперимент проверки
+    позиций, занимаемых участниками в отношении поставленных задач. С другой стороны постоянное
+    информационно-пропагандистское обеспечение нашей деятельности представляет собой интересный
+    эксперимент проверки форм развития. Идейные соображения высшего порядка, а также укрепление
+    и развитие структуры влечет за собой процесс внедрения и модернизации соответствующий условий
+    активизации. Задача организации, в особенности же реализация намеченных плановых заданий играет
+    важную роль в формировании дальнейших направлений развития. Повседневная практика показывает,
+    что постоянное информационно-пропагандистское обеспечение нашей деятельности играет важную роль
+    в формировании существенных финансовых и административных условий.
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld,
-  },
-});
+<script lang="ts" setup>
 </script>
 
 <style lang="scss">
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: #1E1E1E;
+  color: #EAEAEA;
+  font-family: Roboto;
+  font-size: 15px;
+  line-height: #{ 23 / 15 };
 }
+
 </style>

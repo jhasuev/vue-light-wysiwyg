@@ -1,0 +1,11 @@
+@import './reset.scss';
+@import './fonts.scss';
+@import './vars.scss';
+
+.container {
+  padding-left: $edge-paddings;
+  padding-right: $edge-paddings;
+  max-width: #{739px + ($edge-paddings * 2)};
+  margin-left: auto;
+  margin-right: auto;
+}
