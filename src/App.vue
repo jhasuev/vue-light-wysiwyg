@@ -1,4 +1,5 @@
 <template>
+  <edit-panel />
   <div class="container">
     Таким образом консультация с широким активом представляет собой интересный эксперимент проверки
     позиций, занимаемых участниками в отношении поставленных задач. С другой стороны постоянное
@@ -13,6 +14,7 @@
 </template>
 
 <script lang="ts" setup>
+import EditPanel from './components/EditPanel.vue';
 </script>
 
 <style lang="scss">
