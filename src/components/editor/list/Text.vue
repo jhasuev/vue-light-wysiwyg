@@ -9,13 +9,12 @@
 
 import {
   defineProps,
-  withDefaults,
   computed,
   ComputedRef,
   StyleValue,
 } from 'vue';
-import { TProcessedStyles } from '../types';
 import { parseStyles } from '../utils';
+import { TComponentProps } from '../types';
 
 type TProps = {
   text: string,
@@ -23,11 +22,10 @@ type TProps = {
   textAlign?: string,
 };
 
-const props = withDefaults(defineProps<TProps>(), {
-  fontSize: 15,
-  textAlign: 'left',
-});
+const props = defineProps<TProps>();
 
-const getStyles: ComputedRef<TProcessedStyles> = computed(() => parseStyles(props));
+const getStyles: ComputedRef<TComponentProps> = computed(
+  () => parseStyles(props),
+);
 
 </script>

@@ -1,7 +1,9 @@
-import { TProcessedStyles, TSettingStyles } from './types';
+import {
+  TComponentProps,
+} from './types';
 
-export const parseStyles = (props: TSettingStyles): TProcessedStyles => {
-  const styles: TProcessedStyles = {};
+export const parseStyles = (props: TComponentProps): TComponentProps => {
+  const styles: TComponentProps = {};
 
   if (props.fontSize) {
     styles.fontSize = `${props.fontSize}px`;

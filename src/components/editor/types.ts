@@ -1,16 +1,17 @@
-export type TProcessedTextStyles = {
-  fontSize: string,
-  textAlign: string,
+export type TComponentName = 'Text'| 'Picture';
+
+export type TComponentProps = {
+  text?: string
+  textAlign?: string
+  fontSize?: number|string
+  src?: string
+  width?: number|string
 };
 
-export type TProcessedStyles = {
-  fontSize?: string,
-  textAlign?: string,
-  width?: string,
+export type TComponent = {
+  id: number
+  name: TComponentName
+  props: TComponentProps
 };
 
-export type TSettingStyles = {
-  fontSize?: number,
-  textAlign?: string,
-  width?: number,
-};
+export type TComponents = TComponent[];
