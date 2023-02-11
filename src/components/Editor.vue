@@ -1,17 +1,18 @@
 <template>
   <div class="editor">
     <edit-panel
-      @undo="undo"
-      @redo="redo"
-      @heading="heading"
-      @paragraph="paragraph"
-      @picture="onPastePicture"
-      @copy="copy"
+      @undo="handleUndo"
+      @redo="handleRedo"
+      @heading="handleHeading"
+      @paragraph="handleParagraph"
+      @picture="handlePaste"
+      @copy="handleCopy"
     />
     <div
       ref="contentRef"
       class="editor__editable-area"
       contenteditable
+      @input="handleInput"
     />
   </div>
 </template>
@@ -19,64 +20,48 @@
 <script lang="ts" setup>
 import {
   ref,
-  Ref,
   onMounted,
-  onBeforeUnmount,
   defineProps,
   defineEmits,
 } from 'vue';
 import EditPanel from '@/components/EditPanel.vue';
+import addStylesToContentTags from '@/utils/addStylesToContentTags';
 import {
-  copyToClipboard,
-  undo,
-  redo,
-  heading,
-  paragraph,
-  pastePicture,
-  addStyles,
-} from '@/helpers';
+  undo, redo, heading, paragraph, pastePicture,
+} from '@/utils/contentCommands';
+import copyToClipboard from '@/utils/clipboard';
 
 type TProps = {
   modelValue: string,
 };
 
 const emit = defineEmits(['update:modelValue']);
-const observer: Ref<any> = ref();
 const props = defineProps<TProps>();
 const contentRef = ref();
 
 const update = (): void => {
   emit('update:modelValue', contentRef.value.innerHTML);
-  addStyles(contentRef.value);
+  addStylesToContentTags(contentRef.value);
 };
 
-const setObserver = (): void => {
-  observer.value = new MutationObserver(update);
-  observer.value.observe(contentRef.value, {
-    childList: true,
-    attributes: true,
-    subtree: true,
-    characterData: true,
-    characterDataOldValue: true,
-  });
-};
+const handleInput = (): void => update();
 
-const copy = (): void => {
+const handleCopy = (): void => {
   copyToClipboard(props.modelValue);
 };
 
-const onPastePicture = (): void => {
+const handleUndo = (): void => undo();
+const handleRedo = (): void => redo();
+const handleHeading = (): void => heading();
+const handleParagraph = (): void => paragraph();
+
+const handlePaste = (): void => {
   pastePicture();
   update();
 };
 
 onMounted(() => {
   contentRef.value.innerHTML = props.modelValue;
-  setObserver();
-});
-
-onBeforeUnmount(() => {
-  observer.value.disconnect();
 });
 
 </script>

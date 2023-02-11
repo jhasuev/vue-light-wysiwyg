@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import Editor from '@/components/editor/Editor.vue';
+import Editor from '@/components/Editor.vue';
 import { ref, Ref } from 'vue';
 
 const content: Ref<string> = ref(`
