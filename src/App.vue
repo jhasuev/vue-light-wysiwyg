@@ -23,6 +23,7 @@ const content: Ref<string> = ref(`
 
 #app {
   background-color: #1E1E1E;
+  min-height: 100vh;
   color: #EAEAEA;
   font-family: Roboto;
   font-size: 15px;
