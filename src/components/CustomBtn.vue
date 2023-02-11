@@ -6,6 +6,7 @@
       'custom-btn--icon': props.type === 'icon',
       'custom-btn--text': props.type === 'text',
     }"
+    @click="emit('click')"
   >
     <img
       v-if="props.icon"
@@ -19,17 +20,22 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, withDefaults } from 'vue';
+import { defineProps, withDefaults, defineEmits } from 'vue';
 
-type TProps = {
+export type TIconTypes = 'redo'|'undo'|'heading'|'paragraph'|'picture';
+export type TNameTypes = TIconTypes|'copy';
+
+export type TBtnProps = {
   type: 'icon'|'text',
-  icon?: 'left'|'right'|'text-bigger'|'text-smaller'|'picture',
+  name: TNameTypes,
+  icon?: TIconTypes,
   text?: string,
 };
 
-const props = withDefaults(defineProps<TProps>(), {
+const props = withDefaults(defineProps<TBtnProps>(), {
   type: 'text',
 });
+const emit = defineEmits(['click']);
 
 </script>
 
