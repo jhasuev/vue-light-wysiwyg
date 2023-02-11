@@ -1,7 +1,5 @@
-## Project setup
-```
+## Demo
 https://jhasuev.github.io/vue-light-wysiwyg/dist/index.html
-```
 
 # vue-light-wysiwyg
 
