@@ -1,3 +1,8 @@
+## Project setup
+```
+https://jhasuev.github.io/vue-light-wysiwyg/dist/index.html
+```
+
 # vue-light-wysiwyg
 
 ## Project setup
