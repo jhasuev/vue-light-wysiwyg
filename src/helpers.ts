@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const validateImageUrl = (url: string): Promise<boolean|Error> => new Promise((resolve) => {
   const image = new Image();
   image.onload = () => {
@@ -27,7 +28,7 @@ export const redo = (): void => {
 };
 
 export const heading = (): void => {
-  document.execCommand('formatBlock', false, 'h1');
+  document.execCommand('formatBlock', false, 'h2');
 };
 
 export const paragraph = (): void => {
@@ -42,13 +43,25 @@ export const pastePicture = async (): Promise<void> => {
   const isValidImage = await validateImageUrl(url);
   if (!isValidImage) return;
 
-  const res: boolean = document.execCommand('insertImage', false, url);
-  if (!res) return;
+  document.execCommand('insertImage', false, url);
+};
 
-  const img: HTMLImageElement|null = document.querySelector(`img[src="${url}"]:not(.ready)`);
-  if (!img) return;
+export const addStyles = (element: HTMLElement): void => {
+  const images = element.querySelectorAll('image');
+  const headings = element.querySelectorAll('h2');
+  const paragraphs = element.querySelectorAll('p');
 
-  img.classList.add('ready');
-  // img.style.display = 'block';
-  // img.style.margin = '1em 0';
+  images.forEach((img) => {
+    img.style.display = 'block';
+    img.style.margin = '1em 0';
+    img.style.maxWidth = '100%';
+  });
+
+  headings.forEach((headingItem) => {
+    headingItem.style.margin = '1em 0';
+  });
+
+  paragraphs.forEach((paragraphItem) => {
+    paragraphItem.style.margin = '0.5em 0';
+  });
 };

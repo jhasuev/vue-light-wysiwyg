@@ -16,7 +16,7 @@ import Editor from '@/components/editor/Editor.vue';
   color: #EAEAEA;
   font-family: Roboto;
   font-size: 15px;
-  line-height: #{ 23 / 15 };
+  line-height: 1.2;
 }
 
 </style>

@@ -5,7 +5,7 @@
       @redo="redo"
       @heading="heading"
       @paragraph="paragraph"
-      @picture="pastePicture"
+      @picture="onPastePicture"
       @copy="copy"
     />
     <div
@@ -31,6 +31,7 @@ import {
   heading,
   paragraph,
   pastePicture,
+  addStyles,
 } from '@/helpers';
 
 const observer: Ref<any> = ref();
@@ -40,6 +41,7 @@ const contentRef = ref();
 const update = (): void => {
   console.log(Math.random());
   content.value = contentRef.value.innerHTML;
+  addStyles(contentRef.value);
 };
 
 const setObserver = (): void => {
@@ -49,6 +51,11 @@ const setObserver = (): void => {
 
 const copy = (): void => {
   copyToClipboard(content.value);
+};
+
+const onPastePicture = (): void => {
+  pastePicture();
+  update();
 };
 
 onMounted(() => {
@@ -67,6 +74,7 @@ onBeforeUnmount(() => {
   padding: 50px 0;
 
   &__editable-area {
+    overflow: hidden;
     margin-top: 20px;
     outline: 1px dashed #333;
     min-height: 100px;
