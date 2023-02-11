@@ -47,7 +47,7 @@ export const pastePicture = async (): Promise<void> => {
 };
 
 export const addStyles = (element: HTMLElement): void => {
-  const images = element.querySelectorAll('image');
+  const images = element.querySelectorAll('img');
   const headings = element.querySelectorAll('h2');
   const paragraphs = element.querySelectorAll('p');
 

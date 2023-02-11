@@ -22,6 +22,8 @@ import {
   Ref,
   onMounted,
   onBeforeUnmount,
+  defineProps,
+  defineEmits,
 } from 'vue';
 import EditPanel from '@/components/EditPanel.vue';
 import {
@@ -34,23 +36,33 @@ import {
   addStyles,
 } from '@/helpers';
 
+type TProps = {
+  modelValue: string,
+};
+
+const emit = defineEmits(['update:modelValue']);
 const observer: Ref<any> = ref();
-const content: Ref<string> = ref('');
+const props = defineProps<TProps>();
 const contentRef = ref();
 
 const update = (): void => {
-  console.log(Math.random());
-  content.value = contentRef.value.innerHTML;
+  emit('update:modelValue', contentRef.value.innerHTML);
   addStyles(contentRef.value);
 };
 
 const setObserver = (): void => {
   observer.value = new MutationObserver(update);
-  observer.value.observe(contentRef.value, { childList: true });
+  observer.value.observe(contentRef.value, {
+    childList: true,
+    attributes: true,
+    subtree: true,
+    characterData: true,
+    characterDataOldValue: true,
+  });
 };
 
 const copy = (): void => {
-  copyToClipboard(content.value);
+  copyToClipboard(props.modelValue);
 };
 
 const onPastePicture = (): void => {
@@ -59,7 +71,7 @@ const onPastePicture = (): void => {
 };
 
 onMounted(() => {
-  contentRef.value.innerHTML = content.value;
+  contentRef.value.innerHTML = props.modelValue;
   setObserver();
 });
 
